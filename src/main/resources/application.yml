@@ -1,0 +1,19 @@
+#声明root全局warn以上级别输出
+#声明com.example下，debug以上输出
+#声明控制台输出样式
+
+spring:
+  application:
+    name: springboot-helloworld
+
+
+logging:
+  level:
+    root: warn
+    com:
+      example: debug
+  pattern:
+    console: '%-5level %C.%M[%line] - %msg%n'
+
+serve:
+  port:8080
