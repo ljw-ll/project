@@ -6,7 +6,12 @@ spring:
   application:
     name: springboot-helloworld
 
-
+  datasource:             # 配置数据源
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/laboratory?serverTimezone=Asia/Shanghai
+#    initialization-mode: always            #不声明则不会自动执行脚本 ，配置中添加自动创建数据库参数
 logging:
   level:
     root: warn
@@ -14,6 +19,10 @@ logging:
       example: debug
   pattern:
     console: '%-5level %C.%M[%line] - %msg%n'
+
+my:
+  secretkey: R28K42ZEJ8LWRHU5
+  salt: 636eac2534bcfcb0
 
 serve:
   port:8080
