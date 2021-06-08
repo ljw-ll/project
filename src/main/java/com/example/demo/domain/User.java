@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @TableName("user")
 public class User {
-    private Integer id;
+    private Long id;
 
     private String username;
 

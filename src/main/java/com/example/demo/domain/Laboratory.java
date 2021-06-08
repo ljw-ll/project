@@ -11,9 +11,13 @@ import lombok.*;
 @AllArgsConstructor
 @TableName("laboratory")
 public class Laboratory {
-    private Integer id;
+    private Long id;
+
+    private Integer classnum;
 
     private Integer mnum;
 
     private String message;
+
+    private Integer check;
 }

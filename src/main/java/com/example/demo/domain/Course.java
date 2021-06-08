@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @TableName("course")
 public class Course {
-    private Integer id;
+    private Long id;
 
     private String cname;
 
