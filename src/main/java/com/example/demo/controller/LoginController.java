@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.common.EncryptComponent;
 import com.example.demo.common.ResultVo;
+import com.example.demo.controller.exception.MyException;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,19 @@ public class LoginController {
         String result = encryptComponent.encrypt(Map.of("uid", u.getId(), "role", u.getRole(), "username", u.getUsername()));
          response.setHeader("token",result);
          return ResultVo.success(Map.of("role",u.getRole(),"username",u.getUsername()));
-
     }
+
+    @RequestMapping("/register")
+    public ResultVo register(@RequestBody User user, HttpServletResponse response){
+        User u= userService.getUserByPhone(user.getPhone());
+        if(u!=null){
+            throw new MyException(-1,"用户手机号已注册");
+        }
+
+        userService.add(user);
+
+        return ResultVo.success(Map.of("message","注册成功"));
+    }
+
+
 }

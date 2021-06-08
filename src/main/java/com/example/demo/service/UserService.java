@@ -19,14 +19,14 @@ public class UserService {
         return user;
     }
 
-    public void insert(com.example.demo.domain.User user){
+    public void add(com.example.demo.domain.User user){
         userMapper.insert(user);
     }
 
-
-    public void delete(Long id) {
+    public void remove(Long id) {
         userMapper.deleteById(id);
     }
+
 
     public User selectById(Long id) {
         return (com.example.demo.domain.User) userMapper.selectById(id);
