@@ -18,7 +18,7 @@ import java.util.Map;
 public class EncryptComponent {
     @Autowired
     private ObjectMapper objectMapper;
-    @Value("${my.secretKey}")
+    @Value("${my.secretkey}")
     private  String secretKey;
     @Value("${my.salt}")
     private  String salt;
