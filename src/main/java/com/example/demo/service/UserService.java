@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.UserMapper;
+import com.example.demo.domain.User;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,13 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User getUserByPhone(String phone){
-       User user = (User) userMapper.getByPhone(phone);
+    public com.example.demo.domain.User getUserByPhone(String phone){
+       com.example.demo.domain.User user = (com.example.demo.domain.User) userMapper.getByPhone(phone);
         return user;
     }
 
-    public void insert(User user){
-        userMapper.insert((com.example.demo.domain.User) user);
+    public void insert(com.example.demo.domain.User user){
+        userMapper.insert(user);
     }
 
 
@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public User selectById(Long id) {
-        return (User) userMapper.selectById(id);
+        return (com.example.demo.domain.User) userMapper.selectById(id);
     }
 
 

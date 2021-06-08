@@ -6,10 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("select * from user u where u.phone=#{phone}")
     User getByPhone(String phone);
+
+
 }

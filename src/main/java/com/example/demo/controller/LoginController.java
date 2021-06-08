@@ -37,7 +37,7 @@ public class LoginController {
        }
         String result = encryptComponent.encrypt(Map.of("uid", u.getId(), "role", u.getRole(), "username", u.getUsername()));
          response.setHeader("token",result);
-         return ResultVo.success(Map.of("role",u.getRole()));
+         return ResultVo.success(Map.of("role",u.getRole(),"username",u.getUsername()));
 
     }
 }
