@@ -49,3 +49,26 @@
 
 # 延伸阅读
 
+##设计数据库表
+   实体类和持久层通过Mybatis-Plus逆向生成，逆向生成xml自动编写完成
+
+##1.前后端按约定创建ResultVO类。包含业务码/错误信息/数据
+##2.异常处理
+        自定义异常处理类 MyException ，
+        自定义统一异常处理组件   ExceptionController ，@RestControllerAdvice， @ExceptionHandler(MyException.class)
+##3.登录功能的实现
+     3.1 Encrypt 加密组件  使用 objectMapper ，TextEncryptor  基于密码序列和盐值的加密
+     3.2 LoginController 注册与登录的编写
+     3.3 登录拦截器的编写 LoginInterceptor implements HandlerInterceptor
+         全局配置拦截器WebMvcConfiguration
+
+      **出现问题**
+        雪花算法 中id值过大 int 无法使用，  对数据库属性重新设计 用bigINT
+
+      **待解决的更新**
+       1.基于Bean Validation 进行 插入数据库的 元组进行 数据校验
+       2.数据库密码 依旧使用 明文，后期 进行跟新
+
+
+
+
