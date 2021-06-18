@@ -23,7 +23,7 @@ public class UserService {
         userMapper.insert(user);
     }
 
-    public int  remove(Long id) {
+    public int  removeById(Long id) {
         return userMapper.deleteById(id);
     }
 

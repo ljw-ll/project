@@ -13,11 +13,11 @@ import lombok.*;
 public class Laboratory {
     private Long id;
 
-    private Integer classnum;   // 教室号
+    private Integer classnum;
 
-    private Integer mnum;    //机器数量
+    private Integer mnum;
 
-    private String message;  // 机器配置
+    private String message;
 
-    private Integer check;
+    private Integer laborcheck;
 }

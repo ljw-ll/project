@@ -25,34 +25,39 @@ public class UserController {
         return ResultVo.success(Map.of("list_user",list));
     }
 
-    @RequestMapping("/del/{phone}")
-    public ResultVo login(@PathVariable String phone, HttpServletResponse response){
-       // System.out.println(phone);
-          userService.removeByPhone(phone);
-            return ResultVo.success("删除成功");
+    @RequestMapping("/del/{id}")
+    public ResultVo login(@PathVariable long id, HttpServletResponse response){
+        // System.out.println(phone);
+        userService.removeById(id);
+        List<User> list = userService.findAll();
+        return ResultVo.success("删除成功",Map.of("list_user",list));
     }
+
 
     @PostMapping("/add")
     public ResultVo add(@RequestBody User user, HttpServletResponse response){
         String phone = user.getPhone();
         User u= (User) userService.getUserByPhone(user.getPhone());
+        log.debug("{}",user.getPhone());
         if(u!=null){
             return ResultVo.error(400,"添加失败");
         }
         userService.add(user);
-        return  ResultVo.success("添加成功");
+        List<User> list = userService.findAll();
+        return ResultVo.success("添加成功",Map.of("list_user",list));
     }
 
 
     @RequestMapping("/update")
     public ResultVo update(@RequestBody User user, HttpServletResponse response){
-        String phone = user.getPhone();
-        User u= (User) userService.getUserByPhone(user.getPhone());
+        Long id = user.getId();
+        User u= (User) userService.selectById(id);
         if(u==null){
             return ResultVo.error(400,"修改失败");
         }
         userService.update(user);
-        return  ResultVo.success("添加成功");
+        List<User> list = userService.findAll();
+        return ResultVo.success("更新成功",Map.of("list_user",list));
     }
 
 

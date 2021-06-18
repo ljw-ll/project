@@ -23,6 +23,6 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("delete from user u where u.phone=#{phone}")
     void   deleteByPhone(String phone);
 
-    @Update("update user  set name = #{name}  where phone=#{phone}")
+    @Update("update user  set name = #{name} , phone=#{phone}  where id=#{id}")
     void updateUser(User user);
 }

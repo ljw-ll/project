@@ -43,7 +43,7 @@ public class LoginController {
          response.setHeader("token",result);
          response.setHeader("role",u.getRole().toString());
          log.debug("{}",result);
-         return ResultVo.success(Map.of("role",u.getRole(),"name",u.getName(),"phone",u.getPhone()));
+         return ResultVo.success(Map.of("role",u.getRole(),"name",u.getName(),"phone",u.getPhone(),"id",u.getId()));
     }
 
     @RequestMapping("/register")
