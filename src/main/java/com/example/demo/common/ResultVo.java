@@ -16,6 +16,10 @@ public class ResultVo {
        return ResultVo.builder().code(200).data(data).build();
    }
 
+    public static ResultVo success(String msg){
+        return ResultVo.builder().code(200).message(msg).build();
+    }
+
    public static ResultVo error(int code,String message){
        return ResultVo.builder().code(code).message(message).build();
    }

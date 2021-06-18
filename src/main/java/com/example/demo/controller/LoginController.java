@@ -30,13 +30,20 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResultVo login(@RequestBody User user, HttpServletResponse response){
+        System.out.println(user.getPhone());
+        System.out.println(user.getPassword());
        User u= (User) userService.getUserByPhone(user.getPhone());
+
        if(u==null||encoder.matches(u.getPassword(),user.getPassword())){
+        //if(u==null||u.getPassword()!=user.getPassword()){
+            System.out.println(11111111);
            return ResultVo.error(401,"账号或密码错误!");
        }
-        String result = encryptComponent.encrypt(Map.of("uid", u.getId(), "role", u.getRole(), "username", u.getUsername()));
+        String result = encryptComponent.encrypt(Map.of("uid", u.getId(), "role", u.getRole(), "name", u.getName()));
          response.setHeader("token",result);
-         return ResultVo.success(Map.of("role",u.getRole(),"username",u.getUsername()));
+         response.setHeader("role",u.getRole().toString());
+         log.debug("{}",result);
+         return ResultVo.success(Map.of("role",u.getRole(),"name",u.getName(),"phone",u.getPhone()));
     }
 
     @RequestMapping("/register")

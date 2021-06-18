@@ -23,9 +23,19 @@ public class UserService {
         userMapper.insert(user);
     }
 
-    public void remove(Long id) {
-        userMapper.deleteById(id);
+    public int  remove(Long id) {
+        return userMapper.deleteById(id);
     }
+
+
+    public void removeByPhone(String phone) {
+         userMapper.deleteByPhone(phone);
+    }
+
+    public void update(User user){
+        userMapper.updateUser(user);
+    }
+
 
 
     public User selectById(Long id) {
@@ -33,5 +43,8 @@ public class UserService {
     }
 
 
+    public List<User> findAll(){
+        return userMapper.findAll();
+    }
 
 }
