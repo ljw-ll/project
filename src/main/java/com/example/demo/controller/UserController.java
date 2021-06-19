@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.UserDTO;
 import com.example.demo.common.ResultVo;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
@@ -59,6 +60,23 @@ public class UserController {
         List<User> list = userService.findAll();
         return ResultVo.success("更新成功",Map.of("list_user",list));
     }
+
+
+
+    @RequestMapping("/findDTO/{id}")
+    public ResultVo findDTO(@PathVariable long id, HttpServletResponse response){
+
+        User u= (User) userService.selectById(id);
+        if(u==null){
+            return ResultVo.error(403,"资源未找到");
+        }
+
+        UserDTO list_UserDTO = userService.findUserDTO(id);
+        return ResultVo.success("查找成功",Map.of("list_UserDTO",list_UserDTO));
+    }
+
+
+
 
 
 

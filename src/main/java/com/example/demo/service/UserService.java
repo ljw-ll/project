@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.DTO.UserDTO;
 import com.example.demo.dao.UserMapper;
 import com.example.demo.domain.User;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,10 @@ public class UserService {
 
     public List<User> findAll(){
         return userMapper.findAll();
+    }
+
+    public UserDTO findUserDTO(long uid) {
+        return userMapper.findUserDTO(uid);
     }
 
 }

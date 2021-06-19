@@ -18,4 +18,6 @@ public class Course {
     private Integer ctime;
 
     private Integer cnum;
+
+    private Long userid;
 }
