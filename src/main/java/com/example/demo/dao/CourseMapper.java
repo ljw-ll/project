@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.DTO.CourseDTO;
+import com.example.demo.DTO.UserDTO;
 import com.example.demo.domain.Course;
 import com.example.demo.domain.Laboratory;
 import org.apache.ibatis.annotations.Mapper;
@@ -31,5 +33,8 @@ public interface CourseMapper extends BaseMapper<Course> {
     @Update("update course c set cname = #{c.cname} , c.ctime=#{ctime} ,c.cnum=#{cnum}, c.userid=#{ userid }  where id=#{id}")
     void updateCourse(Course course);
 
+
+    // 基于 CourseMapper.xml  实现 CourseDTO ,   SQL语句映射等，声明在xml里
+    CourseDTO findCourseDTO(long cid);
 
 }

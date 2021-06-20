@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.DTO.CourseDTO;
+import com.example.demo.DTO.UserDTO;
 import com.example.demo.dao.CourseMapper;
 import com.example.demo.dao.LaboratoryMapper;
 import com.example.demo.domain.Course;
@@ -38,5 +40,10 @@ public class CourseService {
         return courseMapper.deleteById(id);
     }
     public void update(Course course){ courseMapper.updateCourse(course);
+    }
+
+
+    public CourseDTO findCourseDTO(long cid) {
+        return courseMapper.findCourseDTO(cid);
     }
 }

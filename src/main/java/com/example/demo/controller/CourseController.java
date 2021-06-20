@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.CourseDTO;
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.common.ResultVo;
 import com.example.demo.dao.CourseMapper;
 import com.example.demo.domain.Course;
 import com.example.demo.domain.Laboratory;
+import com.example.demo.domain.User;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.LaboratoryService;
 import com.example.demo.service.UserService;
@@ -83,6 +85,19 @@ public class CourseController {
         courseService.update(course);
         UserDTO list_UserDTO = userService.findUserDTO(course.getUserid());
         return ResultVo.success("查找成功",Map.of("list_UserDTO",list_UserDTO));
+    }
+
+
+    @RequestMapping("/findCourseDTO/{id}")
+    public ResultVo findDTO(@PathVariable long id, HttpServletResponse response){
+
+        Course course = courseService.selectById(id);
+        if(course==null){
+            return ResultVo.error(403,"资源未找到");
+        }
+
+        CourseDTO list_CourseDTO = courseService.findCourseDTO(id);
+        return ResultVo.success("查找成功",Map.of("list_CourseDTO",list_CourseDTO));
     }
 
 }

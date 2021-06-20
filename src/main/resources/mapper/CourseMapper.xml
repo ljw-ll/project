@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CourseMapper">
+    <resultMap id="courseDTOResultMap" type="com.example.demo.DTO.CourseDTO">
+        <!-- 关联查询时，必须显式声明映射，automapping无效 -->
+        <id column="id" property="id" />
+        <result column="cname" property="cname" />
+
+        <!-- ofType，声明集合中元素类型；自动去掉前缀映射；无需声明集合类型 -->
+        <collection property="timers"
+                    columnPrefix="t_"
+                    ofType="com.example.demo.domain.Timer"
+                    autoMapping="true">
+        </collection>
+    </resultMap>
+
+
+<!--    private Long id;-->
+<!--    private Long cid;-->
+<!--    private Integer classnum;-->
+<!--    private Integer tweek;-->
+<!--    private Integer tnum;-->
+<!--    private Integer tcheck;-->
+    <!-- 在接口中声明ID同名方法。 -->
+    <select id="findCourseDTO" resultMap="courseDTOResultMap">
+        select c.*,
+               t.id t_id,
+               t.cid t_cid,
+               t.classnum t_classnum,
+               t.tweek t_tweek,
+               t.tnum t_tnum,
+               t.tcheck t_tcheck
+        from course c left join timer t on c.id=t.cid
+        where c.id=#{cid}
+    </select>
+
+
+</mapper>
